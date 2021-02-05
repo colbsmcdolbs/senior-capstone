@@ -1,2 +1,5 @@
 flask
 Flask-RESTful
+joblib
+pandas
+numpy
