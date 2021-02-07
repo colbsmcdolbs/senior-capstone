@@ -1,4 +1,4 @@
+import helpers.fields
 
-class Form_Processor:
-    def __init__(self):
-        
+def validate_form(json_data):
+    return None

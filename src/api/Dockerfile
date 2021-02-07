@@ -8,6 +8,8 @@ WORKDIR /usr/src/app/
 
 EXPOSE 5000
 
-RUN pip install -r requirements.txt
+COPY requirements.txt /usr/src/app/
+
+RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 
 CMD ["python", "app.py"]
