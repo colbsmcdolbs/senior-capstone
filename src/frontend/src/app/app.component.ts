@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap';
+import { ModelFormComponent } from './model-form/model-form.component';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  
 }

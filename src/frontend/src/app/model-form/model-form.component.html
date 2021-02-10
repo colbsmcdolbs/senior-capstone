@@ -1,0 +1,90 @@
+<div class="container">
+    <h2>Income Verification Form</h2>
+    <form (ngSubmit)="onSubmit()" #modelForm="ngForm">
+
+        <div class="form-row">
+          <div class="col-sm-6 form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" ([ngModel])="fullName" class="form-control" placeholder="Full name">
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="race">Race</label>
+            <select [(ngModel)]="modelForm.race" name="race" class="form-control" required> 
+              <option [value]="r.key" *ngFor="let r of races">
+                 {{r.value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="race">Workclass</label>
+            <select [(ngModel)]="modelForm.workclass" name="workclass" class="form-control" required> 
+              <option [value]="w.key" *ngFor="let w of workclasses">
+                 {{w.value}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-sm-3 form-group">
+            <label for="education">Highest Completed Education</label>
+            <select [(ngModel)]="modelForm.education" name="education" class="form-control" required> 
+              <option [value]="e.key" *ngFor="let e of educations">
+                 {{e.value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="relationship">Current Family Relationship</label>
+            <select [(ngModel)]="modelForm.relationship" name="relationship" class="form-control" required> 
+              <option [value]="r.key" *ngFor="let r of relationships">
+                 {{r.value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="maritalStatus">Marital Status</label>
+            <select [(ngModel)]="modelForm.maritalStatus" name="maritalStatus" class="form-control" required> 
+              <option [value]="m.key" *ngFor="let m of maritalStatuses">
+                 {{m.value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="gender">Gender</label>
+            <select [(ngModel)]="modelForm.gender" name="gender" class="form-control" required> 
+              <option [value]="g.key" *ngFor="let g of genders">
+                 {{g.value}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-sm-4 form-group">
+            <label for="occupation">Occupation</label>
+            <select [(ngModel)]="modelForm.occupation" name="occupation" class="form-control" required> 
+              <option [value]="o.key" *ngFor="let o of occupations">
+                 {{o.value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-8 form-group">
+            <label for="nativeCountry">Native Country</label>
+            <select [(ngModel)]="modelForm.nativeCountry" name="nativeCountry" class="form-control" required> 
+              <option [value]="n.key" *ngFor="let n of nativeCountries">
+                 {{n.value}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col form-group">
+              <button type="submit" class="btn btn-success" [disabled]="!modelForm.form.valid">Submit</button>
+            </div>
+        </div>
+      </form>
+
+      <p>{{modelForm.form.valid}}</p>
+</div>

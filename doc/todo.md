@@ -3,7 +3,7 @@
 ## Model
 
 - [X] Additional Training on the model
-- [ ] Retrain the model and drop the weight column
+- [X] Retrain the model and drop the weight column
 - [ ] First Required Visual
 - [ ] Second Required Visual
 - [ ] Third Required Visual
