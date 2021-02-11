@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Income Verification Form</h2>
-    <form (ngSubmit)="onSubmit()" #modelForm="ngForm">
+    <form (ngSubmit)="onSubmit(testForm.form)" #testForm="ngForm">
 
         <div class="form-row">
           <div class="col-sm-6 form-group">
@@ -9,7 +9,8 @@
           </div>
           <div class="col-sm-3 form-group">
             <label for="race">Race</label>
-            <select [(ngModel)]="modelForm.race" name="race" class="form-control" required> 
+            <select [(ngModel)]="modelForm.race" name="race" class="form-control" required>
+              <option [value]="null" selected disabled>Select Your Race...</option>
               <option [value]="r.key" *ngFor="let r of races">
                  {{r.value}}
               </option>
@@ -17,7 +18,8 @@
           </div>
           <div class="col-sm-3 form-group">
             <label for="race">Workclass</label>
-            <select [(ngModel)]="modelForm.workclass" name="workclass" class="form-control" required> 
+            <select [(ngModel)]="modelForm.workclass" name="workclass" class="form-control" required>
+              <option [value]="null" selected disabled>Select Your Workclass...</option>
               <option [value]="w.key" *ngFor="let w of workclasses">
                  {{w.value}}
               </option>
@@ -28,7 +30,8 @@
         <div class="form-row">
           <div class="col-sm-3 form-group">
             <label for="education">Highest Completed Education</label>
-            <select [(ngModel)]="modelForm.education" name="education" class="form-control" required> 
+            <select [(ngModel)]="modelForm.education" name="education" class="form-control" required>
+              <option [value]="null" selected disabled>Select Your Education...</option>
               <option [value]="e.key" *ngFor="let e of educations">
                  {{e.value}}
               </option>
@@ -37,6 +40,7 @@
           <div class="col-sm-3 form-group">
             <label for="relationship">Current Family Relationship</label>
             <select [(ngModel)]="modelForm.relationship" name="relationship" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Relationship...</option>
               <option [value]="r.key" *ngFor="let r of relationships">
                  {{r.value}}
               </option>
@@ -44,7 +48,8 @@
           </div>
           <div class="col-sm-3 form-group">
             <label for="maritalStatus">Marital Status</label>
-            <select [(ngModel)]="modelForm.maritalStatus" name="maritalStatus" class="form-control" required> 
+            <select [(ngModel)]="modelForm.maritalStatus" name="marital-status" class="form-control" required>
+              <option [value]="null" selected disabled>Select Your Marital Status...</option>
               <option [value]="m.key" *ngFor="let m of maritalStatuses">
                  {{m.value}}
               </option>
@@ -53,6 +58,7 @@
           <div class="col-sm-3 form-group">
             <label for="gender">Gender</label>
             <select [(ngModel)]="modelForm.gender" name="gender" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Gender...</option>
               <option [value]="g.key" *ngFor="let g of genders">
                  {{g.value}}
               </option>
@@ -64,6 +70,7 @@
           <div class="col-sm-4 form-group">
             <label for="occupation">Occupation</label>
             <select [(ngModel)]="modelForm.occupation" name="occupation" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Occupation...</option>
               <option [value]="o.key" *ngFor="let o of occupations">
                  {{o.value}}
               </option>
@@ -71,7 +78,8 @@
           </div>
           <div class="col-sm-8 form-group">
             <label for="nativeCountry">Native Country</label>
-            <select [(ngModel)]="modelForm.nativeCountry" name="nativeCountry" class="form-control" required> 
+            <select [(ngModel)]="modelForm.nativeCountry" name="native-country" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Native Country...</option>
               <option [value]="n.key" *ngFor="let n of nativeCountries">
                  {{n.value}}
               </option>
@@ -80,11 +88,31 @@
         </div>
 
         <div class="form-row">
+          <div class="col-sm-3 form-group">
+            <label for="age">Age</label>
+            <select [(ngModel)]="modelForm.age" name="age" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Age...</option>
+              <option [value]="age" *ngFor="let age of ageRange">
+                 {{age}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <label for="hours-per-week">Workhours per Week</label>
+            <select [(ngModel)]="modelForm.hoursPerWeek" name="hours-per-week" class="form-control" required> 
+              <option [value]="null" selected disabled>Select Your Hour per Week...</option>
+              <option [value]="value" *ngFor="let value of workHoursRange">
+                 {{value}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-success" [disabled]="!modelForm.form.valid">Submit</button>
+              <button type="submit" class="btn btn-success" [disabled]="!testForm.form.valid || formSubmitted">Submit</button>
+              <button type="reset" class="btn btn-danger" (click)="clearForm()">Reset Form</button>
             </div>
         </div>
       </form>
-
-      <p>{{modelForm.form.valid}}</p>
 </div>

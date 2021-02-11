@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor() { }
+  public apiUrl = 'http://api';
 
-  public submitForm() {
+  constructor(private http: HttpClient) { }
 
+  public async submitForm(formData: any): Promise<any> {
+    const data = await this.http.post(`${this.apiUrl}/query`, [formData]).toPromise();
+    return data;
   }
 }
