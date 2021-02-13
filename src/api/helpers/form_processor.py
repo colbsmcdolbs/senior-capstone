@@ -14,6 +14,7 @@ def validate_form(json_data):
 Checks the data for any unacceptable Data
 """
 def check_data_integrity(data):
+    data['age'] = int(data['age'])
     if not isinstance(data['age'], int):
         raise Exception(f"Age not formatted as an integer")
 
@@ -44,6 +45,7 @@ def check_data_integrity(data):
     if data['native-country'] not in get_native_countries():
         raise Exception(f"Invalid Native Country provided.")
 
+    data['hours-per-week'] = int(data['hours-per-week'])
     if not isinstance(data['hours-per-week'], int):
         raise Exception(f"Working hours per week is not formatted as an integer")
 

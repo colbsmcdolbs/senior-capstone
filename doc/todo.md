@@ -17,5 +17,6 @@
 
 ## SPA
 
-- [ ] Create Enums for all possible form data
-- [ ]
+- [ ] Communicate data from the API to frontend
+- [ ] Translate the API response into the UI
+- [ ] Clean up the styling, and tidy up the UX

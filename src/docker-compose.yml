@@ -10,8 +10,6 @@ services:
         environment: 
             PORT: 5000
             FLASK_DEBUG: 1
-        networks:
-            - network
 
     frontend:
         build:
@@ -19,8 +17,3 @@ services:
             dockerfile: Dockerfile
         ports:
             - "4200:4200"
-        networks:
-            - network
-
-networks:
-    network:

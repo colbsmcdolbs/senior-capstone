@@ -1,9 +1,11 @@
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from pathlib import Path
 from helpers.form_processor import validate_form
 import pandas as pd
 import joblib
+import traceback
 
 ## Defined here for global access, will be instantiated during startup
 trained_model = None
@@ -13,8 +15,11 @@ parent = Path(__file__).parent.absolute()
 data_folder = f"{parent}/data"
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/query', methods=['POST'])
+@cross_origin()
 def query_model():
     try:
         json_data = request.json
@@ -25,11 +30,11 @@ def query_model():
         cleansed_query = dummied_data.reindex(columns=model_columns, fill_value=0)
         prediction = trained_model.predict(cleansed_query)
 
-        return jsonify({'result': prediction})
+        return jsonify({'result': list(map(int, prediction))})
     
     except Exception as e:
         print(e)
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e), 'trace': traceback.format_exc()})
 
 
 if __name__ == '__main__':
