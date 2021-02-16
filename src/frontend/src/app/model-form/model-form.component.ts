@@ -3,7 +3,6 @@ import { Form } from '../interfaces/form';
 import { Races, Workclasses, Educations, Relationships, MaritalStatuses, Genders, Occupations, NativeCountries } from '../data/form-data';
 import { SelectOption } from '../interfaces/select-option';
 import { ApiService } from '../services/api.service'
-import { convertTypeAcquisitionFromJson } from 'typescript';
 
 @Component({
   selector: 'app-model-form',
@@ -13,8 +12,9 @@ import { convertTypeAcquisitionFromJson } from 'typescript';
 export class ModelFormComponent implements OnInit {
 
   public modelForm: Form;
-  public fullName: string;
-  public formSubmitted: boolean = false;
+  public fullName: string = '';
+  public message: string;
+  public isFormLocked: boolean = false;
 
   public races: SelectOption[] = Races;
   public workclasses: SelectOption[] = Workclasses;
@@ -33,27 +33,30 @@ export class ModelFormComponent implements OnInit {
     this.modelForm = { age: null, education: null, gender: null, hoursPerWeek: null, 
       maritalStatus: null, nativeCountry: null, occupation: null, race: null, relationship: null,
       workclass: null };
-    this.fullName = '';
+
     this.nativeCountries.sort((a, b) => a.value.localeCompare(b.value)); // Sort our Native Countries
     this.occupations.sort((a, b) => a.value.localeCompare(b.value));
 
     for (let i = 18; i < 101; i++) this.ageRange.push(i);
     for (let i = 0; i < 81; i++) this.workHoursRange.push(i);
-
-    console.log(this.ageRange)
   }
 
-  async onSubmit(formData: any) {
-    this.formSubmitted = true;
+  public async onSubmit(formData: any) {
     const response = await this.apiService.submitForm(formData.value);
-    console.log(response);
+    if (response.error){ 
+      this.message = `Error Retrieving Results. Error: '${response.error}`;
+    } else {
+      this.message = (response[0] == 1) 
+                      ? `${this.fullName} qualifies for financial assistance.`
+                      : `${this.fullName} does not qualify for financial assistance.`;
+      this.isFormLocked = true;
+    }
   }
 
   public clearForm(): void {
-    this.formSubmitted = false;
     const tempObject = {};
     this.modelForm = tempObject;
     this.fullName = '';
+    this.isFormLocked = false;
   }
-
 }

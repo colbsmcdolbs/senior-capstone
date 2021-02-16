@@ -5,7 +5,7 @@
         <div class="form-row">
           <div class="col-sm-6 form-group">
             <label for="fullName">Full Name</label>
-            <input type="text" ([ngModel])="fullName" class="form-control" placeholder="Full name">
+            <input type="text" [value]="fullName" (input)="fullName = $event.target.value" class="form-control" placeholder="Full name" required>
           </div>
           <div class="col-sm-3 form-group">
             <label for="race">Race</label>
@@ -110,9 +110,16 @@
 
         <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-success" [disabled]="!testForm.form.valid || formSubmitted">Submit</button>
-              <button type="reset" class="btn btn-danger" (click)="clearForm()">Reset Form</button>
+              <button type="submit" class="btn btn-success form-button" [disabled]="!testForm.form.valid || isFormLocked">Submit</button>
+              <button type="reset" class="btn btn-danger form-button" (click)="clearForm()">Reset Form</button>
             </div>
         </div>
       </form>
+
+      <p *ngIf="isFormLocked">
+        {{message}}
+      </p>
+      <p *ngIf="isFormLocked" class="information-text">
+        Please clear the form to fill out your next application.
+      </p>
 </div>

@@ -17,6 +17,6 @@
 
 ## SPA
 
-- [ ] Communicate data from the API to frontend
-- [ ] Translate the API response into the UI
-- [ ] Clean up the styling, and tidy up the UX
+- [X] Communicate data from the API to frontend
+- [X] Translate the API response into the UI
+- [X] Clean up the styling, and tidy up the UX
