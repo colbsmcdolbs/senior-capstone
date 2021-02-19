@@ -11,16 +11,6 @@ services:
             PORT: 5000
             FLASK_DEBUG: 1
 
-    visualizations:
-        build:
-            context: ./visualizations
-            dockerfile: Dockerfile
-        ports:
-            - 8080:8080
-        environment:
-            PORT: 8080
-            FLASK_DEBUG: 1
-
     frontend:
         build:
             context: ./frontend

@@ -36,6 +36,21 @@ def query_model():
         print(e)
         return jsonify({'error': str(e), 'trace': traceback.format_exc()})
 
+@app.route('/health', methods=['GET'])
+@cross_origin()
+def query_model():
+    try:
+        model_loaded = False
+        if trained_model is not None:
+            model_loaded = True
+        result = {'model_loaded': model_loaded, 'api_healthy': True}
+        
+        return jsonify(result)
+    
+    except Exception as e:
+        print(e)
+        return jsonify({'error': str(e), 'trace': traceback.format_exc()})
+
 
 if __name__ == '__main__':
     trained_model = joblib.load(f"{data_folder}/model.pkl")
