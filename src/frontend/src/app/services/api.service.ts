@@ -14,4 +14,9 @@ export class ApiService {
     const data = await this.http.post(`${this.apiUrl}/query`, [formData]).toPromise();
     return data;
   }
+
+  public async getHealth(): Promise<any> {
+    const data = await this.http.get(`${this.apiUrl}/health`).toPromise();
+    return data;
+  }
 }

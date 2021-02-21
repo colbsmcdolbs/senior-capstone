@@ -1,1 +1,7 @@
-<p>health works!</p>
+<h2>Application Health</h2>
+
+<p>API Status: {{ applicationHealthResponse }}</p>
+
+<p>AI Model Loaded: {{ modelLoadedResponse }}</p>
+
+<button class="btn btn-primary" (click)="checkHealth()" [disabled]="isWaitingResponse">Check Health</button>

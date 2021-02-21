@@ -38,18 +38,19 @@ def query_model():
 
 @app.route('/health', methods=['GET'])
 @cross_origin()
-def query_model():
+def get_status():
     try:
         model_loaded = False
         if trained_model is not None:
             model_loaded = True
-        result = {'model_loaded': model_loaded, 'api_healthy': True}
+        result = {'modelLoaded': model_loaded, 'apiStatus': 'Healthy'}
         
         return jsonify(result)
     
     except Exception as e:
         print(e)
-        return jsonify({'error': str(e), 'trace': traceback.format_exc()})
+        result = {'modelLoaded': model_loaded, 'apiStatus': 'Down'}
+        return jsonify(result)
 
 
 if __name__ == '__main__':

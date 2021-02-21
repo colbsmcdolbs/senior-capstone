@@ -2,7 +2,7 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { Form } from '../interfaces/form';
 import { Races, Workclasses, Educations, Relationships, MaritalStatuses, Genders, Occupations, NativeCountries } from '../data/form-data';
 import { SelectOption } from '../interfaces/select-option';
-import { ApiService } from '../services/api.service'
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-model-form',
@@ -46,9 +46,10 @@ export class ModelFormComponent implements OnInit {
     if (response.error){ 
       this.message = `Error Retrieving Results. Error: '${response.error}`;
     } else {
-      this.message = (response[0] == 1) 
-                      ? `${this.fullName} qualifies for financial assistance.`
-                      : `${this.fullName} does not qualify for financial assistance.`;
+      const result = response.result[0];
+      this.message = (result === 0) 
+                      ? `${this.fullName} DOES qualifies for financial assistance.`
+                      : `${this.fullName} does NOT qualify for financial assistance.`;
       this.isFormLocked = true;
     }
   }

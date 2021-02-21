@@ -7,7 +7,7 @@
 - [X] First Required Visual
 - [X] Second Required Visual
 - [X] Third Required Visual
-- [ ] Redo Scatterplot/Heatmap visualization and get it much larger
+- [X] Redo Scatterplot/Heatmap visualization and get it much larger
 
 ## API
 
@@ -21,5 +21,5 @@
 - [X] Communicate data from the API to frontend
 - [X] Translate the API response into the UI
 - [X] Clean up the styling, and tidy up the UX
-- [ ] Add Hookups to the API /health route
-- [ ] Add text explaining the data that is seen in the visualizations
+- [X] Add Hookups to the API /health route
+- [X] Add text explaining the data that is seen in the visualizations

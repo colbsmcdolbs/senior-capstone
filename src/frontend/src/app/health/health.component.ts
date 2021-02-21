@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service'
 
 @Component({
   selector: 'app-health',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HealthComponent implements OnInit {
 
-  constructor() { }
+  public modelLoadedResponse: boolean = null;
+  public applicationHealthResponse: string = '';
+  public isWaitingResponse: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit(): void {}
+
+  public async checkHealth() {
+    this.isWaitingResponse = true;
+    const response = await this.apiService.getHealth();
+    this.modelLoadedResponse = response.modelLoaded;
+    this.applicationHealthResponse = response.apiStatus
+    this.isWaitingResponse = false;
   }
-
 }
